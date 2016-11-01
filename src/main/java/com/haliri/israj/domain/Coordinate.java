@@ -23,6 +23,9 @@ public class Coordinate {
     @NotNull
     private String name;
 
+    @NotNull
+    private String description;
+
     public String getId() {
         return id;
     }
@@ -53,5 +56,13 @@ public class Coordinate {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

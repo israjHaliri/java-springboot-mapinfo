@@ -18,31 +18,40 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 public class MyappApplication {
 
-	private final Logger logger = LoggerFactory.getLogger(MyappApplication.class);
+    private final Logger logger = LoggerFactory.getLogger(MyappApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(MyappApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MyappApplication.class, args);
+    }
 
-	@Bean
-	CommandLineRunner init(final UserRepository userRepository) {
+    @Bean
+    CommandLineRunner init(final UserRepository userRepository) {
 
-		return new CommandLineRunner() {
+        return new CommandLineRunner() {
 
-			@Override
-			public void run(String... arg0) throws Exception {
-				User user = new User();
-				user = userRepository.findByUsername("israj");
+            @Override
+            public void run(String... arg0) throws Exception {
+                try {
+                    User user = userRepository.findByUsername("israj");
+                    userRepository.delete(user.getId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-				logger.info("data user = {}",user.toString());
-				if (!user.getUsername().isEmpty()){
-					user.setUsername("israj");
-					user.setPassword("026");
-					userRepository.save(user);
-				}
-			}
+                try {
+                    User user = new User();
+                    user.setUsername("israj");
+                    user.setPassword("026");
+                    userRepository.save(user);
 
-		};
+                    logger.info("data user = {}", user.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-	}
+            }
+
+        };
+
+    }
 }

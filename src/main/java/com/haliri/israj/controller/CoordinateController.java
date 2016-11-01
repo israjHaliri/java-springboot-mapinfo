@@ -21,7 +21,7 @@ public class CoordinateController {
     @Autowired
     CoordinateRepository coordinateRepository;
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "/coordinate",method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Map home() {
         Map map = new HashMap<>();
