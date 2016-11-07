@@ -1,40 +1,57 @@
-<div class="col-md-12" >
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4><i class="fa fa-list"></i>&nbsp;<b>Content Data</b></h4>
+<link rel="stylesheet" type="text/css" href="../assets/css/backend/manage-map.css" xmlns:listData/>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">List Data</h3>
+            <div class="pull-right">
+                <a ng-click="clear()" data-toggle="modal" data-target="#myModal">
+                <span class="clickable filter" data-toggle="tooltip" title="" data-container="body"
+                      data-original-title="Toggle table filter">
+                    <i class="fa fa-plus"></i>
+                </span>
+                </a>
             </div>
-            <div class="panel-body">
-                <div class="col-md-12" align="right" style="margin-bottom:15px;">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                        Add New Data
-                    </button>
-                </div>
-                <table class="table table-responsive table-bordered	">
-                    <thead style="background:#a7bbe4;color:white">
-                    <tr>
-                        <th>Username</th>
-                        <th>Active</th>
-                        <th width="25%">Content</th>
-                    </tr>
-                    </thead>
-                    <tbody ng-init="loadData()">
-                    <tr ng-repeat="data in listData">
-                        <td>{{data.username}}</td>
-                        <td>{{data.active}}</td>
-                        <td align="center">
-                            <a href="javascript:void(0);" ng-click="deleteData(data.id)" class="btn btn-danger">Delete</a>
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal"	 ng-click="editData(data.id)" class="btn btn-info">Edit</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div align="right" class="panel-footer">copyright 2016</div>
         </div>
+        <div class="panel-body">
+            <input type="text" ng-model="search" class="form-control" id="task-table-filter" data-action="filter"
+                   data-filters="#task-table" placeholder="Filter Tasks">
+        </div>
+        <table class="table table-hover table-bordered id=" task-table
+        ">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th ng-click="sort('name')">Name
+                <span class="glyphicon glyphicon-chevron-down sort-icon pull-right" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+            <th>Logitude</th>
+            <th>Latitude</th>
+            <th width="15%">Action</th>
+        </tr>
+        </thead>
+        <tbody ng-init="loadData()">
+        <tr dir-paginate="data in listData|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+            <td>{{ $index + 1 }}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.longitude}}</td>
+            <td>{{data.latitude}}</td>
+            <td align="center">
+                <a ng-click="deleteData(data.id)"
+                   class="btn btn-danger">Delete</a>
+                <a data-toggle="modal" data-target="#myModal"
+                   ng-click="editData(data.id)" class="btn btn-info">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+        </table>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-12" align="center">
+        <dir-pagination-controls
+                max-size="5"
+                direction-links="true"
+                boundary-links="true">
+        </dir-pagination-controls>
+    </div>
 </div>
 
 
@@ -45,30 +62,35 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-edit"></i>&nbsp;<b>Process Data</b></h4>
+                <i class="fa fa-edit"></i>&nbsp;<b>Process Data</b>
             </div>
             <div class="modal-body">
                 <div class="form-group" style="display:none">
-                    <label for="email">ID:</label>
+                    <label>ID:</label>
                     <input ng-model="id" type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="email">Username:</label>
-                    <input ng-model="username" type="text" class="form-control required" >
+                    <label>name:</label>
+                    <input ng-model="name" type="text" class="form-control required">
                 </div>
                 <div class="form-group">
-                    <label for="email">Password:</label>
-                    <input ng-model="password" type="password" class="form-control required">
+                    <label>longitude:</label>
+                    <input ng-model="longitude" type="text" class="form-control required">
                 </div>
                 <div class="form-group">
-                    <label for="email">Active:</label>
-                    <select class="form-control required" ng-model="active"  ng-options="option.name for option in options" >
-                    </select>
+                    <label>latitude:</label>
+                    <input ng-model="latitude" type="text" class="form-control required">
+                </div>
+                <div class="form-group">
+                    <label>description:</label>
+                    <input ng-model="description" type="text" class="form-control required">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="processData(category)">Save changes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="processData(category)">Save
+                    changes
+                </button>
             </div>
         </div>
     </div>

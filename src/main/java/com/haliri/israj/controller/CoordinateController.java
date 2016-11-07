@@ -35,10 +35,9 @@ public class CoordinateController {
         coordinateRepository.save(coordinate);
     }
 
-    @RequestMapping(value = "/coordinate/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/coordinate",method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable("id") String id,@RequestBody @Valid Coordinate coordinate){
-        coordinate.setId(id);
+    public void update(@RequestBody @Valid Coordinate coordinate){
         coordinateRepository.save(coordinate);
     }
 

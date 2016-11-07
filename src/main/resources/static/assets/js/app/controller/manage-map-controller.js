@@ -1,26 +1,22 @@
-app.controller('dashboardController', function($scope, $http, $location, $routeParams) {
+app.controller('manageMapController', function($scope, $http, $location, $routeParams) {
+
+   var getUrl = window.location;
+   var baseUrl = getUrl .protocol + "//" + getUrl.host;
+
 
    var id = $routeParams.id;
    $scope.active_path = null;
-   $scope.category = "save"; 
+   $scope.category = "save";
 
-
-   $scope.options = [
-   {
-      name: 'Active',
-      value: '1'
-   }, 
-   {
-      name: 'Inactive',
-      value: '0'
+   $scope.sort = function(keyname){
+      $scope.sortKey = keyname;   //set the sortKey to the param passed
+      $scope.reverse = !$scope.reverse; //if true make it false and vice versa
    }
-   ];
 
-   $scope.active = $scope.options[0];
 
    $scope.loadData= function () {
       $http({
-         url: 'http://localhost:8080/api/list_data',
+         url: baseUrl+'/coordinate',
          dataType: 'json',
          method: 'GET',
          data: '',
@@ -30,7 +26,7 @@ app.controller('dashboardController', function($scope, $http, $location, $routeP
 
       }).success(function(response){
          console.log("load response =",response);
-         $scope.listData = response.data;
+         $scope.listData = response.list_data;
       }, function myError(response) {
          console.log("load error response =",response);
       });
@@ -56,14 +52,15 @@ app.controller('dashboardController', function($scope, $http, $location, $routeP
 
    $scope.saveData= function () {
 
-      $http.post('http://localhost:8080/api/insert', {
-         'username' : $scope.username,
-         'password' : $scope.password, 
-         'active' : $scope.active.value
-      }).success(function (response){             
+      $http.post(baseUrl+'/coordinate', {
+         'name' : $scope.name,
+         'longitude' : $scope.longitude,
+         'latitude' : $scope.latitude,
+         'description' : $scope.description
+      }).success(function (response){
          console.log("response save =",response);
-         $scope.loadData();
          $scope.clear();
+         $scope.loadData();
       }, function myError(response) {
          console.log("response save =",response);
       });
@@ -71,50 +68,50 @@ app.controller('dashboardController', function($scope, $http, $location, $routeP
 
    $scope.updateData= function () {
 
-      $http.put('http://localhost:8080/api/update', {
+      $http.put(baseUrl+'/coordinate', {
          'id' : $scope.id,
-         'username' : $scope.username,
-         'password' : $scope.password, 
-         'active' : $scope.active.value
-      }).success(function (response){             
-         console.log("response save =",response);
-         $scope.loadData();
+         'name' : $scope.name,
+         'longitude' : $scope.longitude,
+         'latitude' : $scope.latitude,
+         'description' : $scope.description
+      }).success(function (response){
+         console.log("response update =",response);
          $scope.clear();
+         $scope.loadData();
       }, function myError(response) {
-         console.log("response save =",response);
+         console.log("response update =",response);
       });
    };
 
    $scope.editData= function (param) {
 
-      $http.get('http://localhost:8080/api/list_data/'+param).success(function(response) {
-         $scope.id = response.data[0]["id"];
-         $scope.username = response.data[0]["username"];
-         $scope.password = response.data[0]["password"];  
-         $scope.active = $scope.options[0];  
-         $scope.category = "edit";      
+      $http.get(baseUrl+'/coordinate/'+param).success(function(response) {
+         console.log(response);
+         $scope.id = response["id"];
+         $scope.name = response["name"];
+         $scope.longitude = response["longitude"];
+         $scope.latitude = response["latitude"];
+         $scope.description = response["description"];
+         $scope.category = "edit";
       });
 
    };
 
    $scope.deleteData = function (param) {
       if(confirm("Are you sure to delete this data?")){
-         $http.get("http://localhost:8080/api/delete/"+param).success(function(response){
+         $http.delete(baseUrl+"/coordinate/"+param).success(function(response){
             $scope.loadData();
          });
       }
    };
 
    $scope.clear= function (param) {
-
-      $http.get('http://localhost:8080/api/list_data/'+param).success(function(response) {
-         $scope.id = "";
-         $scope.username = "";
-         $scope.password = "";
-         $scope.active = "";      
-         $scope.category = "save";      
-      });
-
+      $scope.id = "";
+      $scope.name = "";
+      $scope.longitude = "";
+      $scope.latitude = "";
+      $scope.description = "";
+      $scope.category = "save";
    };
 
 });

@@ -1,4 +1,4 @@
-front.controller('dashboardController', function($scope, $http, $location, $routeParams) {
+app.controller('loginController', function($scope, $http, $location, $routeParams) {
 
    var id = $routeParams.id;
    $scope.active_path = null;
