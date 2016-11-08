@@ -16,6 +16,7 @@ import java.util.Map;
  * Created by Israj PC on 10/17/2016.
  */
 @RestController
+@RequestMapping(value = "/api")
 public class CoordinateController {
 
     @Autowired

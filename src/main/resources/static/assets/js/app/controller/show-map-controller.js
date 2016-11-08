@@ -17,7 +17,7 @@ app.controller('showMapController', ['$scope', '$http', function ($scope, $http)
 
     $scope.initData = function(){
         $http({
-            url: "http://localhost:8181/coordinate",
+            url: "http://localhost:8181/api/coordinate",
             dataType: 'json',
             method: 'GET',
             data: '',
@@ -26,7 +26,7 @@ app.controller('showMapController', ['$scope', '$http', function ($scope, $http)
             }
 
         }).success(function (response) {
-            console.log("load response =", response.list_data);
+            console.log("load response =", response);
 
             for (var i = 0; i < response.list_data.length; i++) {
                 $scope.dataMarker.push({

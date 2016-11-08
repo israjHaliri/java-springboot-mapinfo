@@ -16,7 +16,7 @@ app.controller('manageMapController', function($scope, $http, $location, $routeP
 
    $scope.loadData= function () {
       $http({
-         url: baseUrl+'/coordinate',
+         url: baseUrl+'/api/coordinate',
          dataType: 'json',
          method: 'GET',
          data: '',
@@ -52,7 +52,7 @@ app.controller('manageMapController', function($scope, $http, $location, $routeP
 
    $scope.saveData= function () {
 
-      $http.post(baseUrl+'/coordinate', {
+      $http.post(baseUrl+'/api/coordinate', {
          'name' : $scope.name,
          'longitude' : $scope.longitude,
          'latitude' : $scope.latitude,
@@ -68,7 +68,7 @@ app.controller('manageMapController', function($scope, $http, $location, $routeP
 
    $scope.updateData= function () {
 
-      $http.put(baseUrl+'/coordinate', {
+      $http.put(baseUrl+'/api/coordinate', {
          'id' : $scope.id,
          'name' : $scope.name,
          'longitude' : $scope.longitude,
@@ -85,7 +85,7 @@ app.controller('manageMapController', function($scope, $http, $location, $routeP
 
    $scope.editData= function (param) {
 
-      $http.get(baseUrl+'/coordinate/'+param).success(function(response) {
+      $http.get(baseUrl+'/api/coordinate/'+param).success(function(response) {
          console.log(response);
          $scope.id = response["id"];
          $scope.name = response["name"];
@@ -99,7 +99,7 @@ app.controller('manageMapController', function($scope, $http, $location, $routeP
 
    $scope.deleteData = function (param) {
       if(confirm("Are you sure to delete this data?")){
-         $http.delete(baseUrl+"/coordinate/"+param).success(function(response){
+         $http.delete(baseUrl+"/api/coordinate/"+param).success(function(response){
             $scope.loadData();
          });
       }
