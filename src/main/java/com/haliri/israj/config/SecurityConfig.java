@@ -3,6 +3,7 @@ package com.haliri.israj.config;
 import com.haliri.israj.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,16 +26,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().anyRequest().fullyAuthenticated().and().
-//                httpBasic().and().
-//                csrf().disable();
-
         http
-                .authorizeRequests().antMatchers("/api*/**").hasRole("ADMIN").anyRequest().authenticated().and()
-                .authorizeRequests().antMatchers("*/**").permitAll().anyRequest().permitAll().and()
-                .formLogin().loginProcessingUrl("/login").permitAll().and().csrf().disable()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and()
-                .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint());
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
+                .antMatchers("/api/**").hasAnyRole("ADMIN").anyRequest().authenticated()
+                .antMatchers("/**").permitAll().anyRequest().permitAll()
+                .and()
+                .httpBasic();
+
+//        http
+//                .authorizeRequests().antMatchers("/api*/**").hasRole("ADMIN").anyRequest().authenticated().and()
+//                .authorizeRequests().antMatchers("*/**").permitAll().anyRequest().permitAll().and()
+//                .formLogin().loginPage("/login").loginProcessingUrl("/login").permitAll().and().csrf().disable()
+//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and()
+//                .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint());
     }
 
 }
