@@ -41,7 +41,7 @@ public class MyappApplication {
                 try {
                     User user = new User();
                     user.setUsername("israj");
-                    user.setPassword("026");
+                    user.setPassword("$2a$10$M3p/awf2XC9Xiz4tdpge1eXbXb2nNwi1TA0pK7ntRWBHXBIYUrD3e");
                     userRepository.save(user);
 
                     logger.info("data user = {}", user.toString());

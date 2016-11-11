@@ -21,7 +21,7 @@ public class UserController {
     @RequestMapping(value="/api/custom_auth", method = RequestMethod.POST)
     public User infoLogin() throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
+        String name = auth.getName();
 
         User user = userRepository.findByUsername(name);
         if(user==null){

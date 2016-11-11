@@ -2,9 +2,12 @@ package com.haliri.israj.controller;
 
 import com.haliri.israj.domain.Coordinate;
 import com.haliri.israj.service.CoordinateRepository;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,6 +22,8 @@ import java.util.Map;
 @RequestMapping(value = "/api")
 public class CoordinateController {
 
+    private final org.slf4j.Logger logger = LoggerFactory.getLogger(DashboardController.class);
+
     @Autowired
     CoordinateRepository coordinateRepository;
 
@@ -27,6 +32,12 @@ public class CoordinateController {
     public Map home() {
         Map map = new HashMap<>();
         map.put("list_data", coordinateRepository.findAll());
+
+//        String password = "026";
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String hashedPassword = passwordEncoder.encode(password);
+//
+//        System.out.println("tai : {}"+ hashedPassword);
         return map;
     }
 

@@ -29,18 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
                 .antMatchers("/api/**").hasAnyRole("ADMIN").anyRequest().authenticated()
                 .antMatchers("/**").permitAll().anyRequest().permitAll()
                 .and()
                 .httpBasic();
 
-//        http
-//                .authorizeRequests().antMatchers("/api*/**").hasRole("ADMIN").anyRequest().authenticated().and()
-//                .authorizeRequests().antMatchers("*/**").permitAll().anyRequest().permitAll().and()
-//                .formLogin().loginPage("/login").loginProcessingUrl("/login").permitAll().and().csrf().disable()
-//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and()
-//                .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint());
     }
 
 }
