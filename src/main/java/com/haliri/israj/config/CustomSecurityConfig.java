@@ -42,9 +42,18 @@ public class CustomSecurityConfig extends GlobalAuthenticationConfigurerAdapter 
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 com.haliri.israj.domain.User user = userRepository.findByUsername(username);
 
+                Boolean statusEnable;
+                if (user.getEnable() == 1)
+                {
+                    statusEnable = true;
+                }
+                else {
+                    statusEnable = false;
+                }
+
                 if(user != null) {
-                    return new User(user.getUsername(), user.getPassword(), true, true, true, true,
-                            AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
+                    return new User(user.getUsername(), user.getPassword(), statusEnable, true, true, true,
+                            AuthorityUtils.createAuthorityList(user.getRole()));
                 } else {
                     throw new UsernameNotFoundException("could not find the user '"
                             + username + "'");
