@@ -1,6 +1,6 @@
 var app = angular.module('myApp', ['ngRoute','ngCookies','leaflet-directive', 'angularUtils.directives.dirPagination']);
 
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(function ($routeProvider,$httpProvider) {
 
 	$routeProvider
 	.when('/', {templateUrl: 'pages/dashboard.html', controller: 'dashboardController'})
@@ -8,10 +8,34 @@ app.config(['$routeProvider', function ($routeProvider) {
 	.when('/manage_map', {templateUrl: 'pages/manage-map.html',controller: 'manageMapController'})
 	.otherwise({redirectTo: '/'});
 
-}]);
+	$httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
 
-app.run(function($rootScope,$location,$http) {
+		return {
+			'responseError': function(response) {
+
+				if(response.status === 401 || response.status === 403) {
+					window.location = baseUrl+"/login"
+				}
+				return $q.reject(response);
+			}
+		};
+	}]);
+
+});
+
+
+app.run(function($rootScope,$http) {
+
 	$rootScope.logout = function(){
 
+		$http({
+			url: baseUrl+'/logout',
+			dataType: 'json',
+			method: 'POST'
+		}).success(function(response){
+			location.reload();
+		}, function myError(response) {
+			console.log("error logout =",response);
+		});
 	};
 });

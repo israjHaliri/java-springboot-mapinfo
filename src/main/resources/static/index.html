@@ -12,7 +12,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/backend/jquery.gritter.css"/>
 </head>
 <body class="skin-dark" ng-app="myApp">
-<header ng-if="isLoggedIn !=''" class="header" id="#head-nav-backend">
+<!--<header ng-if="isLoggendIn == 1 " class="header" id="#head-nav-backend">-->
+<header class="header" id="#head-nav-backend">
   <span href="index.html" class="logo">
     <big>DASHBOARD</big>
   </span>
@@ -21,25 +22,25 @@
             <span class="sr-only">Toggle navigation</span>
             <span class="fa fa-bars fa-lg"></span>
         </a>
-        <!--<div class="navbar-right">-->
-            <!--<ul class="nav navbar-nav">-->
-                <!--<li class="dropdown profile-menu">-->
-                    <!--<a href="javascript;" class="dropdown-toggle" data-toggle="dropdown">-->
-                        <!--<i class="fa fa-cog fa-lg"></i>-->
-                        <!--<span class="username">Me</span>-->
-                        <!--<i class="caret"></i>-->
-                    <!--</a>-->
-                    <!--<ul class="dropdown-menu box profile">-->
-                        <!--<li>-->
-                            <!--<div class="up-arrow"></div>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="javascript:void(0);" ng-click="logout();"><i class="fa fa-power-off"></i>Log Out</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
+        <div class="navbar-right">
+            <ul class="nav navbar-nav">
+                <li class="dropdown profile-menu">
+                    <a href="javascript;" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-cog fa-lg"></i>
+                        <span class="username">Me</span>
+                        <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu box profile">
+                        <li>
+                            <div class="up-arrow"></div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" ng-click="logout();"><i class="fa fa-power-off"></i>Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </nav>
 </header>
 <div class="wrapper row-offcanvas row-offcanvas-left">

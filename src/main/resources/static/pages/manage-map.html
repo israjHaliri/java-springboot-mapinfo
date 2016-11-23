@@ -29,7 +29,7 @@
             <th width="15%">Action</th>
         </tr>
         </thead>
-        <tbody ng-init="loadData()">
+        <tbody>
         <tr dir-paginate="data in listData|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
             <td>{{ $index + 1 }}</td>
             <td>{{data.name}}</td>

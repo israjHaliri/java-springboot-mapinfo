@@ -7,9 +7,9 @@ app.controller('manageMapController', function($scope, $http, $location, $routeP
    $scope.category = "save";
 
    $scope.sort = function(keyname){
-      $scope.sortKey = keyname;   //set the sortKey to the param passed
-      $scope.reverse = !$scope.reverse; //if true make it false and vice versa
-   }
+      $scope.sortKey = keyname;
+      $scope.reverse = !$scope.reverse;
+   };
 
 
    $scope.loadData= function () {
@@ -23,18 +23,16 @@ app.controller('manageMapController', function($scope, $http, $location, $routeP
        }
 
     }).success(function(response){
-      // console.log("load response =",response);
       $scope.listData = response.list_data;
    }, function myError(response) {
       console.log("load error response =",response);
    });
  };
 
+ $scope.loadData();
 
 
  $scope.processData= function (param) {
-
-   // console.log("category=",param);
 
    if (param == "save") 
    {
@@ -65,7 +63,6 @@ $scope.saveData= function () {
        }
 
     }).success(function(response){
-      // console.log("save response =",response);
       $scope.clear();
       $scope.loadData();
    }, function myError(response) {
@@ -91,7 +88,6 @@ $scope.updateData= function () {
        }
 
     }).success(function(response){
-      // console.log("update response =",response);
       $scope.clear();
       $scope.loadData();
    }, function myError(response) {
@@ -105,7 +101,6 @@ $scope.editData= function (param) {
    $http.get(baseUrl+'/api/coordinate/'+param,{
       headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
    }).success(function(response) {
-      // console.log(response);
       $scope.id = response["id"];
       $scope.name = response["name"];
       $scope.longitude = response["longitude"];

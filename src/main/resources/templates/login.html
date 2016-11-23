@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+    <link href="/static/assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/static/assets/css/font-awesome.css" rel="stylesheet"/>
+    <link href="/static/assets/css/backend/login.css" rel="stylesheet"/>
+    <link rel="icon" href="/static/image/tab-icon.png" />
+</head>
+<body>
+<div>
+    <form name="f" th:action="@{/login}" method="post">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-5 col-md-4">
+                    <div class="form-login" style="margin-top: 140px">
+                        <h4>Welcome back.</h4>
+                        <div align="center" th:if="${param.error}" class="alert alert-error">
+                            Invalid username and password.
+                        </div>
+                        <div align="center" th:if="${param.logout}" class="alert alert-success">
+                            You have been logged out.
+                        </div>
+                        <input type="text" id="username" name="username" class="form-control input-sm chat-input"
+                               placeholder="username"/>
+                        <br/>
+                        <input type="password" id="password" name="password" class="form-control input-sm chat-input"
+                               placeholder="password"/>
+                        <br/>
+                        <div class="wrapper">
+                        <span class="group-btn">
+                            <button class="btn btn-primary btn-md">Login <i class="fa fa-sign-in"></i></button>
+                        </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
