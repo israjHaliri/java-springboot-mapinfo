@@ -32,9 +32,6 @@ import java.io.IOException;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
-    UserRepository userRepository;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
