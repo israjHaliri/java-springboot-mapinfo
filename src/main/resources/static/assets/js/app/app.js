@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute','ngCookies','leaflet-directive', 'angularUtils.directives.dirPagination']);
+var app = angular.module('mapinfo', ['ngRoute','ngCookies','leaflet-directive', 'angularUtils.directives.dirPagination']);
 
 app.config(function ($routeProvider,$httpProvider) {
 

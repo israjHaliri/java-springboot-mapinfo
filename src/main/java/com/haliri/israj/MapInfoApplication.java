@@ -2,11 +2,8 @@ package com.haliri.israj;
 
 import com.haliri.israj.domain.User;
 import com.haliri.israj.service.UserRepository;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -19,12 +16,12 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 @EnableAutoConfiguration
 @SpringBootApplication
-public class MyappApplication {
+public class MapInfoApplication {
 
-    private final Logger logger = LoggerFactory.getLogger(MyappApplication.class);
+    private final Logger logger = LoggerFactory.getLogger(MapInfoApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(MyappApplication.class, args);
+        SpringApplication.run(MapInfoApplication.class, args);
     }
 
     @Bean
