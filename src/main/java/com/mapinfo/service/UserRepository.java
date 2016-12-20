@@ -1,6 +1,6 @@
-package com.haliri.israj.service;
+package com.mapinfo.service;
 
-import com.haliri.israj.domain.User;
+import com.mapinfo.domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

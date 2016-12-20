@@ -1,13 +1,11 @@
-package com.haliri.israj.controller;
+package com.mapinfo.controller;
 
-import com.haliri.israj.domain.Coordinate;
-import com.haliri.israj.service.CoordinateRepository;
+import com.mapinfo.domain.Coordinate;
+import com.mapinfo.service.CoordinateRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

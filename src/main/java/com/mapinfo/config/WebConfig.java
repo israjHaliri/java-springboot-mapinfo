@@ -1,4 +1,4 @@
-package com.haliri.israj.config;
+package com.mapinfo.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

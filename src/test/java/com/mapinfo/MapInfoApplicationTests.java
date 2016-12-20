@@ -1,4 +1,4 @@
-package com.haliri.israj;
+package com.mapinfo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

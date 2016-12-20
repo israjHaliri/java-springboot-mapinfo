@@ -1,7 +1,7 @@
-package com.haliri.israj;
+package com.mapinfo;
 
-import com.haliri.israj.domain.User;
-import com.haliri.israj.service.UserRepository;
+import com.mapinfo.domain.User;
+import com.mapinfo.service.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -31,13 +31,6 @@ public class MapInfoApplication {
 
             @Override
             public void run(String... arg0) throws Exception {
-
-                logger.error("Message logged at ERROR level");
-                logger.warn("Message logged at WARN level");
-                logger.info("Message logged at INFO level");
-                logger.debug("Message logged at DEBUG level");
-
-
 
                 try {
                     User user = userRepository.findByUsername("israj");

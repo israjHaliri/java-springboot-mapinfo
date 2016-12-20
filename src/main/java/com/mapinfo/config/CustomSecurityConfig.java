@@ -1,8 +1,8 @@
-package com.haliri.israj.config;
+package com.mapinfo.config;
 
-//import com.haliri.israj.domain.User;
-import com.haliri.israj.controller.DashboardController;
-import com.haliri.israj.service.UserRepository;
+//import User;
+import com.mapinfo.controller.DashboardController;
+import com.mapinfo.service.UserRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,7 +40,7 @@ public class CustomSecurityConfig extends GlobalAuthenticationConfigurerAdapter 
 
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                com.haliri.israj.domain.User user = userRepository.findByUsername(username);
+                com.mapinfo.domain.User user = userRepository.findByUsername(username);
 
                 Boolean statusEnable;
                 if (user.getEnable() == 1)

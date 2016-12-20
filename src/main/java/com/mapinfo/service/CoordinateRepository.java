@@ -1,6 +1,6 @@
-package com.haliri.israj.service;
+package com.mapinfo.service;
 
-import com.haliri.israj.domain.Coordinate;
+import com.mapinfo.domain.Coordinate;
 import org.springframework.data.repository.CrudRepository;
 
 /**
