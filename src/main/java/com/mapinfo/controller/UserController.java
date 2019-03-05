@@ -24,8 +24,10 @@ public class UserController {
     @RequestMapping(value = "/api/user_info", method = RequestMethod.POST)
     public Map userInfo(@RequestParam(value = "username") String username) {
         User user = userRepository.findByUsername(username);
+
         Map map = new HashMap();
         map.put("data",user);
+
         return map;
     }
 }

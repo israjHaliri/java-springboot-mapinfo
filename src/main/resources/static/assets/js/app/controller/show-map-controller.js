@@ -3,8 +3,8 @@ app.controller('showMapController', ['$scope', '$http', '$cookies', function ($s
     var getCookieAuth = $cookies.get("mapinfo-auth-cookies");
 
     $scope.centerMap = {
-        lat: 40.095,
-        lng: -3.823,
+        lat: -6.21462,
+        lng: 106.84513,
         zoom: 8
     };
 

@@ -7,7 +7,7 @@
     </appender>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <!-- Name of the file where the log messages are written -->
-        <file>${catalina.home:-.}/logs/mapinfo.log</file>
+        <file>tmp/logs/mapinfo.log</file>
         <encoder>
             <pattern>%d %-5level %logger{35} - %msg %n</pattern>
         </encoder>

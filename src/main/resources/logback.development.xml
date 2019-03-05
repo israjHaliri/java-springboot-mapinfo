@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
 
-    <logger name="com.mapinfo" level="debug">
+    <logger name="com.mapinfo" level="info">
         <appender-ref ref="FILE" />        
     </logger>
 

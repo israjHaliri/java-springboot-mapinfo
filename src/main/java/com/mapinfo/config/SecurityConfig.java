@@ -35,30 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").permitAll().anyRequest().permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/")
-//                .successHandler(successHandler())
-                .failureHandler(failureHandler())
                 .and().logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
                 .and().exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint());
 
-    }
-
-    private AuthenticationSuccessHandler successHandler() {
-        return new AuthenticationSuccessHandler() {
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-                httpServletResponse.getWriter().append("OK");
-                httpServletResponse.setStatus(200);
-            }
-        };
-    }
-
-    private AuthenticationFailureHandler failureHandler() {
-        return new AuthenticationFailureHandler() {
-            @Override
-            public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-                httpServletResponse.getWriter().append("Authentication failure");
-                httpServletResponse.setStatus(401);
-            }
-        };
     }
 }
