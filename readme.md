@@ -3,6 +3,13 @@
     + java8
     + mongodb
     
+## Tecnology stacks
+    + maven 3
+    + java8
+    + mongodb
+    + thymleaf
+    + angular js 1
+    
 ## To get started follow this checklist:
     + create database testing
     + create table user and coordinate
